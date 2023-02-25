@@ -180,7 +180,13 @@ git checkout 835a0edccd -- path/to/file # Get file from this commit, then: git c
 git checkout 835a0edccd^ -- path/to/file # Restore file deleted in this commit. The caret (^) means
                                          # "as it was before committing", e.g. before deletion
 git checkout other-branch path/file1 path/file2 # pick specific files from another branch
+git restore -SW -s $(git rev-list -n1 --before=yyyy-mm-dd main) -- path/to/file # Restore to specific point in time
 ```
+**Checkout to a specific point in time**
+```sh
+git switch -c newBranch $(git rev-list -n1 --before=yyyy-mm-dd main)
+```
+
 **Revert to or restore a specific commit**
 ```sh
 git cherry-pick 2e744aba6c # pick a specific commit from another branch
